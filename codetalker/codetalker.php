@@ -147,15 +147,19 @@
         {
             for ($i = 0; $i < $len_i; $i++) //for > numero de colunas
             {
-                
+              $resultadofinal .= $n[$k][$i] . "*"; //Adiciona o caractere de separacao
                 
 
+
+              /*
                 if ($k == 1 && $i == ($len_i - 1)) { //caso seja o ultimo valor da matriz, não adiciona o caractere de separacao
                   $resultadofinal .= $n[$k][$i]; 
                 }
                 else {
                   $resultadofinal .= $n[$k][$i] . "*"; //Adiciona o caractere de separacao
                 }
+
+                */
 
             }
 
@@ -323,7 +327,7 @@
       $messageArray = explode("*", $message, -1); //transforma a mensagem em array
   
 
-      print_r($messageArray);
+      //print_r($messageArray);
       
 
 
@@ -356,32 +360,40 @@
 
       //decode talker
 
-      $messageArray = array(); //Cria o array multidimensional
+      //$messageArray = array(); //Cria o array multidimensional
       //$messageArray = array_chunk($messageArray, ($messageArray.siz)/ 2));
 
       $n = array(); //n => matriz do resultado
       $c = array(); //c => matriz da chave
       $m = array(); //m => matriz da mensagem
 
-      $c = $criptokeyArray;
-      echo "<hr> ARRAY CHAVE";
-      print_r($c);
-      echo "<hr> ARRAY MENSAGEM";
-      $m = $messageArray;
-      print_r($m);
+/*
+      for ($k = 0; $k < 2; $k++)
+        {
+            for ($i = 0; $i < 2; $i++)
+            {
+
+              //transforma o array bidimensional em inteiro
+                $c[$k][$i] = intval($criptokeyArray[$k][$i]);
+
+            }
+        } 
+      
+
+      */
+
+      $c = $inversa;
+
+
+      $messageChunk = array(); //cria o array
+      $messageChunk = array_chunk($messageArray, 5); //MUDAR O TAMANHO DEPOIS
+
 
       for ($k = 0; $k < 2; $k++)
         {
-            for ($i = 0; $i < (strlen($message)/ 2); $i++)
+            for ($i = 0; $i < 5; $i++) //MUDAR O TAMANHO DEPOIS
             {
-                //algoritmo para criptografia
-                //super simples XD
-                
-
-                $n[$k][$i] = ($c[$k][0] * $m[0][$i]) + ($c[$k][1] * $m[1][$i]);
-
-               
-
+                $m[$k][$i] = intval($messageChunk[$k][$i]);
 
                 
 
@@ -389,15 +401,59 @@
 
         }
 
+
+
+
+       //$c = $criptokeyArray;
+       echo "<hr> ARRAY CHAVE ";
+       print_r($c);
+       echo "<hr> ARRAY MENSAGEM ";
+       //$m = $messageArray;
+       print_r($m);
+
+
+
+
+      for ($k = 0; $k < 2; $k++)
+        {
+            for ($i = 0; $i < 5; $i++)
+            {
+                //algoritmo para criptografia
+                //super simples XD
+                
+
+                $n[$k][$i] = ($c[$k][0] * $m[0][$i]) + ($c[$k][1] * $m[1][$i]);
+
+
+            }
+
+        }
+
         echo "<hr>";
-        echo print_r($n);
+        
 
 
         print_r($n);
 
+        $teste = array();
+
+        for ($k = 0; $k < 2; $k++)
+        {
+            for ($i = 0; $i < 5; $i++)
+            {
+                //algoritmo para criptografia
+                //super simples XD
+                
+
+                $teste[$k][$i] = chr($n[$k][$i]);
+            }
+          
+          }
 
       //int to ascii char
       //exibir resultado
+      echo "<hr>";
+      print_r($teste);
 
 
 
