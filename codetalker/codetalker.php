@@ -154,15 +154,15 @@
                   $resultadofinal .= $n[$k][$i]; 
                 }
                 else {
-                  $resultadofinal .= $n[$k][$i] . "-"; //Adiciona o caractere de separacao
+                  $resultadofinal .= $n[$k][$i] . "*"; //Adiciona o caractere de separacao
                 }
 
             }
 
         }
 
-        echo $resultadofinal;
-        echo "<hr> ATENÇÃO: Sua chave é " . $criptokey;
+        //echo $resultadofinal;
+        //echo "<hr> ATENÇÃO: Sua chave é " . $criptokey;
 
         return $resultadofinal;
       
@@ -317,10 +317,14 @@
 
       //separar mensagem a partir do caractere de separacao
 
-      $messageArray = array(); //cria o array
-      $messageAscii = array(); //cria o array
 
-      $messageArray = str_split($message); //transforma a mensagem em array
+      $messageArray = array(); //cria o array
+      
+      $messageArray = explode("*", $message, -1); //transforma a mensagem em array
+  
+
+      print_r($messageArray);
+      
 
 
       //determinante
@@ -353,7 +357,7 @@
       //decode talker
 
       $messageArray = array(); //Cria o array multidimensional
-      $messageArray = array_chunk(str_split($message), (strlen($message)/ 2));
+      //$messageArray = array_chunk($messageArray, ($messageArray.siz)/ 2));
 
       $n = array(); //n => matriz do resultado
       $c = array(); //c => matriz da chave
@@ -417,7 +421,7 @@
 
   echo $mensagemcriptografada;
 
-  $code->decodetalker($message, $criptokey);
+  $code->decodetalker($mensagemcriptografada, $criptokey);
 
 
 
