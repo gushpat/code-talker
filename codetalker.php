@@ -29,7 +29,7 @@
 
     
 
-    public function encodetalker($message, $criptokey){
+    public function encodetester($message, $criptokey){
 
       $tamanho_mensagem = 5;
 
@@ -38,16 +38,33 @@
       //transformar a mensagem em array bidimensional
 
       $messageArray = array(); //cria o array
+      $messageAscii = array(); //cria o array
 
       $messageArray = str_split($message); //transforma a mensagem em array
 
-      $testeChunk = array_chunk($messageArray, $tamanho_mensagem); // array bidimensional com 5 colunas de 2 elementos (10 caracteres)
+      $teste = ord($messageArray[0]);
+
+      foreach ($messageArray as $key => $value) {
+        echo "<br>";
+        echo "Caracter: " . $value . " - " . "ASCII: " . ord($value);
+        $messageAscii[] = ord($value);
+      }
+
+      echo "<hr>";
+
+
+      print_r($messageAscii);
+
+
+      echo "<hr>";
+
+      $testeChunk = array_chunk($messageAscii, $tamanho_mensagem); // array bidimensional com 5 colunas de 2 elementos (10 caracteres)
 
       print_r($testeChunk);
 
       echo "<hr>";
 
-      $testeChunk[0][0] = "x";
+      //$testeChunk[0][0] = "x";
 
       echo "teste".$testeChunk[0][0];
 
@@ -104,6 +121,40 @@
         echo "<hr>";
         echo print_r($n);
 
+
+
+        //print array bidimensional
+
+        echo "<hr>";
+
+        $resultadofinal = "";
+
+        for ($k = 0; $k < 2; $k++)
+        {
+            for ($i = 0; $i < 5; $i++)
+            {
+                //algoritmo para criptografia
+                //super simples XD
+                
+
+                if ($k == 1 && $i == 4) {
+                  $resultadofinal .= $n[$k][$i];
+                }
+                else {
+                  $resultadofinal .= $n[$k][$i] . "+";
+                }
+
+                
+
+                
+                
+
+            }
+
+        }
+
+        echo $resultadofinal;
+
       
 
       
@@ -117,7 +168,7 @@
   }
 
   $code = new code();
-  $code->encodetalker($message, $criptokey);
+  $code->encodetester($message, $criptokey);
 
 
 
