@@ -72,7 +72,7 @@ body {
 
 
   <label for="message">Digite Sua Mensagem:</label><br>
-  <input type="text" id="message" name="message" value="TesteTeste"><br>
+  <input type="text" id="message" name="message" value="testeteste"><br>
   <label for="crptokey">Digite sua chave:</label><br>
   <input type="text" id="crptokey" name="crptokey" value="1234" maxlength="4"><br><br>
   <input type="submit" value="Encode Talker">
