@@ -27,6 +27,153 @@
 
   class code{
 
+
+    public function encodetalker($message, $criptokey){
+
+      $extrachar = "*"; //Caracter que será usado para ajustar o tamanho da mensagem
+      $messagelen = strlen($message); //Pega o tamanho da mensagem
+
+      //agora verificamos se o tamanho da chave é multiplo de 5
+      //caso seja, beleza, nada acontece, feijoada
+      //caso contrario, adicionamos o numero de caracteres faltantes
+      //até que o tamanho da mensagem seja multiplo de 5
+      //no caso o caractere escolhido será a asteristico (*)
+
+      if ($messagelen % 5 != 0) { //Se o tamanho da mensagem não for multiplo de 5
+ 
+        
+
+        while ($messagelen % 5 != 0) { //Enquanto o tamanho da mensagem não for multiplo de 5, adiciona o caractere escolhido
+          $message = $message . $extrachar; //Adiciona o caractere escolhido
+          $messagelen = strlen($message); //Atualiza o tamanho da mensagem
+          echo "O tamanho da mensagem não é multiplo de 5, por isso, adicionamos o caractere: " . $extrachar . " ";
+        }
+
+      }
+
+      //agora vamos criar um array multidimensional com o tamanho da mensagem
+      //e vamos preencher com os caracteres da mensagem
+      
+      $messageArray = array(); //Cria o array
+      $messageArray = str_split($message); //Preenche o array com os caracteres da mensagem
+
+      $messageAsciiCodes = array(); //Cria o array que vai receber os valores ASCII
+
+
+      foreach ($messageArray as $key => $value) {
+        //echo "<br>"; //Para facilitar a visualização
+        //echo "Caracter: " . $value . " - " . "ASCII: " . ord($value); //Mostra o caracter e o valor ASCII (DEBUG ONLY)
+        $messageAsciiCodes[] = ord($value); //Preenche o array com os valores ASCII correspondentes a cada caracter da mensagem
+      }
+
+      //agora vamos criar um array multidimensional com 5 colunas
+      //e vamos preencher com os codigos ASCII da mensagem
+
+
+      $messageMultiArray = array(); //Cria o array multidimensional
+      $messageMultiArray = array_chunk($messageAsciiCodes, 5);
+
+      //tudo beleza em relação a mensagem, agora vamos cuidar da chave
+      //como a chave é composta apenas de numeros, não precisamos de nenhum tratamento
+      //apenas vamos criar um array multidimensional com 2 colunas e 2 linhas
+
+      $criptokeyArray = array(); //Cria o array multidimensional
+      $criptokeyArray = array_chunk(str_split($criptokey), 2); //Preenche o array com os caracteres da chave
+
+      //Antes de qualquer coisa, vamos verificar a determinante da matriz
+      //caso seja 0, a mensagem não pode ser criptografada e a chave terá que ser alterada
+
+      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0];
+
+      
+
+      if ($det == 0)
+      {
+        
+        echo "DET = 0, a mensagem não pode ser criptografada, a chave deve ser alterada";
+
+        //atribui esses valores temporariamente para não dar erro
+        //utilizar uma outra função para obter numeros aleatorios
+        $criptokeyArray[0][0] = 1;
+        $criptokeyArray[0][1] = 2;
+        $criptokeyArray[1][0] = 3;
+        $criptokeyArray[1][1] = 4;
+
+      }
+
+      //tudo ok, agora vamos criar a matriz de criptografia
+
+      $n = array(); //n => matriz do resultado
+      $c = array(); //c => matriz da chave
+      $m = array(); //m => matriz da mensagem
+
+      $c = $criptokeyArray;
+      $m = $messageAsciiCodes;
+
+      $lenk = $messagelen / 5; //Tamanho da matriz de mensagem / 5
+
+
+      for ($k = 0; $k < $lenk; $k++)
+        {
+            for ($i = 0; $i < 5; $i++)
+            {
+                //algoritmo para criptografia
+                //super simples XD
+                
+
+                $n[$k][$i] = ($c[$k][0] * $m[0][$i]) + ($c[$k][1] * $m[1][$i]);
+
+                
+
+            }
+
+        }
+
+
+        $resultadofinal = "";
+
+        for ($k = 0; $k < $lenk; $k++)
+        {
+            for ($i = 0; $i < 5; $i++)
+            {
+                //algoritmo para criptografia
+                //super simples XD
+                
+
+                if ($k == ($lenk - 1) && $i == 4) {
+                  $resultadofinal .= $n[$k][$i];
+                }
+                else {
+                  $resultadofinal .= $n[$k][$i] . "-";
+                }
+
+                
+
+                
+                
+
+            }
+
+        }
+
+        echo $resultadofinal;
+      
+
+
+
+
+
+
+
+
+
+      
+
+
+      
+
+    }
+
     
 
     public function encodetester($message, $criptokey){
@@ -168,7 +315,7 @@
   }
 
   $code = new code();
-  $code->encodetester($message, $criptokey);
+  $code->encodetalker($message, $criptokey);
 
 
 
