@@ -31,23 +31,23 @@
 
     public function encodetalker($message, $criptokey){
 
-      $extrachar = "*"; //Caracter que será usado para ajustar o tamanho da mensagem
+      $extrachar = " "; //Caracter que será usado para ajustar o tamanho da mensagem
       $messagelen = strlen($message); //Pega o tamanho da mensagem
 
-      //agora verificamos se o tamanho da chave é multiplo de 5
+      //agora verificamos se o tamanho da mensagem é par
       //caso seja, beleza, nada acontece, feijoada
       //caso contrario, adicionamos o numero de caracteres faltantes
-      //até que o tamanho da mensagem seja multiplo de 5
-      //no caso o caractere escolhido será a asteristico (*)
+      //até que o tamanho da mensagem seja par
+      
 
-      if ($messagelen % 5 != 0) { //Se o tamanho da mensagem não for multiplo de 5
+      if ($messagelen % 2 != 0) { //Se o tamanho da mensagem não for par
  
         
 
-        while ($messagelen % 5 != 0) { //Enquanto o tamanho da mensagem não for multiplo de 5, adiciona o caractere escolhido
+        while ($messagelen % 2 != 0) { //Enquanto o tamanho da mensagem não for par, adiciona o caractere escolhido
           $message = $message . $extrachar; //Adiciona o caractere escolhido
           $messagelen = strlen($message); //Atualiza o tamanho da mensagem
-         // echo "O tamanho da mensagem não é multiplo de 5, por isso, adicionamos o caractere: " . $extrachar . " ";
+          //echo "O tamanho da mensagem não é par, por isso, adicionamos o caractere: " . $extrachar . " ";
         }
 
       }
@@ -63,7 +63,7 @@
 
       foreach ($messageArray as $key => $value) {
         //echo "<br>"; //Para facilitar a visualização
-        //echo "Caracter: " . $value . " - " . "ASCII: " . ord($value); //Mostra o caracter e o valor ASCII (DEBUG ONLY)
+       // echo "Caracter: " . $value . " - " . "ASCII: " . ord($value); //Mostra o caracter e o valor ASCII (DEBUG ONLY)
         $messageAsciiCodes[] = ord($value); //Preenche o array com os valores ASCII correspondentes a cada caracter da mensagem
       }
 
@@ -72,7 +72,7 @@
 
 
       $messageMultiArray = array(); //Cria o array multidimensional
-      $messageMultiArray = array_chunk($messageAsciiCodes, 5);
+      $messageMultiArray = array_chunk($messageAsciiCodes, ($messagelen / 2)); //Preenche o array multidimensional com as colunas
 
       //print_r($messageMultiArray); //Mostra o array multidimensional (DEBUG ONLY)
 
@@ -116,13 +116,17 @@
       $c = $criptokeyArray;
       $m = $messageMultiArray;
 
-      $lenk = $messagelen / 5; //Tamanho da matriz de mensagem / 5
+      $len_i = 0;
+      $len_i = ($messagelen / 2);
+       //Tamanho da matriz de mensagem / 5
 
-      //echo "<hr>".$lenk."<hr>";
+      //$len_i = 5;
 
-      for ($k = 0; $k < $lenk; $k++)
+      //echo "<hr> Tamanho da linha ".$len_i."<hr>";
+
+      for ($k = 0; $k < 2; $k++)
         {
-            for ($i = 0; $i < 5; $i++)
+            for ($i = 0; $i < $len_i; $i++)
             {
                 //algoritmo para criptografia
                 //super simples XD
@@ -139,15 +143,15 @@
 
         $resultadofinal = "";
 
-        for ($k = 0; $k < $lenk; $k++)
+        for ($k = 0; $k < 2; $k++)
         {
-            for ($i = 0; $i < 5; $i++)
+            for ($i = 0; $i < $len_i; $i++)
             {
                 //algoritmo para criptografia
                 //super simples XD
                 
 
-                if ($k == ($lenk - 1) && $i == 4) {
+                if ($k == 1 && $i == ($len_i - 1)) {
                   $resultadofinal .= $n[$k][$i];
                 }
                 else {
