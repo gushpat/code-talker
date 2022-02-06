@@ -89,7 +89,7 @@
       //Antes de qualquer coisa, vamos verificar a determinante da matriz
       //caso seja 0, a mensagem não pode ser criptografada e a chave terá que ser alterada
 
-      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0]; //MUDAR ISSO DE + PARA * MAIS TARDE
+      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0]; 
 
       //echo "DET = " . $det;
 
@@ -163,6 +163,8 @@
 
         echo $resultadofinal;
         echo "<hr> ATENÇÃO: Sua chave é " . $criptokey;
+
+        return $resultadofinal;
       
     }
 
@@ -313,12 +315,89 @@
 
       echo "<br> <p>chamou função decodetalker</p>";
 
+      //separar mensagem a partir do caractere de separacao
+
+      $messageArray = array(); //cria o array
+      $messageAscii = array(); //cria o array
+
+      $messageArray = str_split($message); //transforma a mensagem em array
+
+
       //determinante
+
+      $criptokeyArray = array(); //Cria o array multidimensional
+      $criptokeyArray = array_chunk(str_split($criptokey), 2);
+
+      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0];
+
       //chave adjunta
+
+      $adjunta = array();
+
+      $adjunta[0][0] = $criptokeyArray[1][1];
+      $adjunta[0][1] = $criptokeyArray[0][1] * -1;
+      $adjunta[1][0] = $criptokeyArray[1][0] * -1;
+      $adjunta[1][1] = $criptokeyArray[0][0];
+
+
       //matriz inversa
+
+      $inversa = array();
+
+      for ($i = 0; $i < 2; $i++) {
+        for ($j = 0; $j < 2; $j++) {
+          $inversa[$i][$j] = $adjunta[$i][$j] / $det;
+        }
+      }
+
       //decode talker
+
+      $messageArray = array(); //Cria o array multidimensional
+      $messageArray = array_chunk(str_split($message), (strlen($message)/ 2));
+
+      $n = array(); //n => matriz do resultado
+      $c = array(); //c => matriz da chave
+      $m = array(); //m => matriz da mensagem
+
+      $c = $criptokeyArray;
+      echo "<hr> ARRAY CHAVE";
+      print_r($c);
+      echo "<hr> ARRAY MENSAGEM";
+      $m = $messageArray;
+      print_r($m);
+
+      for ($k = 0; $k < 2; $k++)
+        {
+            for ($i = 0; $i < (strlen($message)/ 2); $i++)
+            {
+                //algoritmo para criptografia
+                //super simples XD
+                
+
+                $n[$k][$i] = ($c[$k][0] * $m[0][$i]) + ($c[$k][1] * $m[1][$i]);
+
+               
+
+
+                
+
+            }
+
+        }
+
+        echo "<hr>";
+        echo print_r($n);
+
+
+        print_r($n);
+
+
       //int to ascii char
       //exibir resultado
+
+
+
+
 
 
 
@@ -333,7 +412,11 @@
 
 
   $code = new code();
-  $code->encodetalker($message, $criptokey);
+  
+  $mensagemcriptografada = $code->encodetalker($message, $criptokey);
+
+  echo $mensagemcriptografada;
+
   $code->decodetalker($message, $criptokey);
 
 
