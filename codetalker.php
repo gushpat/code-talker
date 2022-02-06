@@ -18,6 +18,7 @@
     echo "Numero de carcteres da mensagem: ".strlen($message); //Tamanho da mensagem
     echo "<br>";
     echo "Numero de carcteres da chave: ".strlen($criptokey); //Tamanho da chave
+    echo "<hr>";
 
   }
 
@@ -46,7 +47,7 @@
         while ($messagelen % 5 != 0) { //Enquanto o tamanho da mensagem não for multiplo de 5, adiciona o caractere escolhido
           $message = $message . $extrachar; //Adiciona o caractere escolhido
           $messagelen = strlen($message); //Atualiza o tamanho da mensagem
-          echo "O tamanho da mensagem não é multiplo de 5, por isso, adicionamos o caractere: " . $extrachar . " ";
+         // echo "O tamanho da mensagem não é multiplo de 5, por isso, adicionamos o caractere: " . $extrachar . " ";
         }
 
       }
@@ -73,6 +74,8 @@
       $messageMultiArray = array(); //Cria o array multidimensional
       $messageMultiArray = array_chunk($messageAsciiCodes, 5);
 
+      //print_r($messageMultiArray); //Mostra o array multidimensional (DEBUG ONLY)
+
       //tudo beleza em relação a mensagem, agora vamos cuidar da chave
       //como a chave é composta apenas de numeros, não precisamos de nenhum tratamento
       //apenas vamos criar um array multidimensional com 2 colunas e 2 linhas
@@ -80,17 +83,20 @@
       $criptokeyArray = array(); //Cria o array multidimensional
       $criptokeyArray = array_chunk(str_split($criptokey), 2); //Preenche o array com os caracteres da chave
 
+      //echo "<hr>";
+      //print_r($criptokeyArray); //Mostra o array multidimensional (DEBUG ONLY)
+
       //Antes de qualquer coisa, vamos verificar a determinante da matriz
       //caso seja 0, a mensagem não pode ser criptografada e a chave terá que ser alterada
 
-      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0];
+      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0]; //MUDAR ISSO DE + PARA * MAIS TARDE
 
-      
+      //echo "DET = " . $det;
 
       if ($det == 0)
       {
         
-        echo "DET = 0, a mensagem não pode ser criptografada, a chave deve ser alterada";
+        //echo "DET = 0, a mensagem não pode ser criptografada, a chave deve ser alterada";
 
         //atribui esses valores temporariamente para não dar erro
         //utilizar uma outra função para obter numeros aleatorios
@@ -108,10 +114,11 @@
       $m = array(); //m => matriz da mensagem
 
       $c = $criptokeyArray;
-      $m = $messageAsciiCodes;
+      $m = $messageMultiArray;
 
       $lenk = $messagelen / 5; //Tamanho da matriz de mensagem / 5
 
+      //echo "<hr>".$lenk."<hr>";
 
       for ($k = 0; $k < $lenk; $k++)
         {
