@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 <title>Code Talker</title>
 <meta charset="utf-8">
@@ -8,6 +8,16 @@
 <link rel="stylesheet" type="text/css" href="./assets/css/style.css" media="screen" />
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<?php 
+
+$_SESSION["message"] = null; // Inicializa a variável de sessão
+$_SESSION["key"] = null; // Inicializa a variável de sessão
+
+?>
+
+
 
 </head>
 <body>
@@ -23,23 +33,22 @@
 </div>
 
 <div class="descheader">
-<img src="./assets/images/logo.png" alt="Code Talker" width="auto" height="200px"/>
-<p>In this example, we have created a header, three unequal columns and a footer. On smaller screens, the columns will stack on top of each other.</p>
-<p>Resize the browser window to see the responsive effect.</p>
+<img class="imagect" src="./assets/images/logo.png" alt="Code Talker" />
 </div>
 
 
 <div class="header">
 
-<form action="./src/codetalker.php" method="post">
-
-
+<p>Digite a mensagem e a chave nos campos abaixo. Caso deseje criptografar, pressione ENCODE. Caso deseje descriptografar, pressione DECODE</p>
+<hr>
+<form>
   <label for="message">Digite Sua Mensagem:</label><br>
-  <textarea name="message" id="message" cols="30" rows="10"></textarea><br>
+  <textarea name="message" id="message" cols="30" rows="10" style="width: 90%;"></textarea><br>
   <label for="crptokey">Digite sua chave:</label><br>
-  <input type="text" id="crptokey" name="crptokey" value="1234" maxlength="4"><br><br>
-  <input type="submit" value="Encode Talker">
-  <input type="reset" value="Clear">
+  <input type="number" min="0" max="9999" maxlength="4" step="1" id="crptokey" name="crptokey" ><br><br>
+  <input type="button" onclick="alert('Hello World!')" value="Encode Talker">
+  <input type="button" onclick="alert('Hello World!')" value="Decode Talker">
+  <input type="reset" value="Limpar">
 
   
 
@@ -49,15 +58,23 @@
   </form>
 </div>
 
-<div class="row">
-  <div class="column side" style="background-color:#aaa;">Column</div>
+<div class="header">
+  
+  <?php
 
-  <div class="column middle" style="background-color:#bbb;">
+  if (isset($_SESSION["message"])) {
+    echo $_SESSION["message"];
+  }
+
+
+
+
+?>
   
   
   
   </div>
-  <div class="column side" style="background-color:#ccc;">Column</div>
+  
 </div>
 
 <div class="footer">
@@ -70,12 +87,6 @@
   
   ?>
 </div>
-
-<audio autoplay loop>
-  <source src="horse.ogg" type="audio/ogg">
-  <source src="./assets/music/Boss_Time_-_www.FesliyanStudios.com.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
 
 
 <script>
