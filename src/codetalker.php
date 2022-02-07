@@ -168,13 +168,13 @@
         //echo $resultadofinal;
         //echo "<hr> ATENÇÃO: Sua chave é " . $criptokey;
 
-        return $resultadofinal;
+        return $resultadofinal;  //Retorna o resultado final
       
     }
 
     
-
-    public function encodetester($message, $criptokey){
+/*
+    public function codetester($message, $criptokey){
 
       $tamanho_mensagem = 5;
 
@@ -310,6 +310,7 @@
 
 
     }
+*/
 
 
     public function decodetalker($message, $criptokey)
