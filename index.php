@@ -73,7 +73,7 @@ echo $header;
 
 
 
-<div class="footer">
+<div class="header">
   <?php 
 
   require_once "./assets/footer.php";
