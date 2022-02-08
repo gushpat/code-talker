@@ -37,6 +37,13 @@
     
   }
 
+  .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+  }
+
   .imagect{
     width: 90%;
     height: 250px;
