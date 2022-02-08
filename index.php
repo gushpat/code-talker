@@ -22,15 +22,15 @@ $_SESSION["key"] = null; // Inicializa a variável de sessão
 </head>
 <body>
 
+<?php
 
-<div class="topnav" id="myTopnav">
-  <a href="#home" class="active">Inicio</a>
-  <a href="#news">Sobre</a>
-  <a href="#contact">Código Fonte</a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
+require_once './assets/header.php';
+
+echo $header;
+
+
+?>
+
 
 <div class="descheader">
 <img class="imagect" src="./assets/images/logo.png" alt="Code Talker" />
@@ -39,48 +39,44 @@ $_SESSION["key"] = null; // Inicializa a variável de sessão
 
 <div class="header">
 
+
+
 <p>Digite a mensagem e a chave nos campos abaixo. Caso deseje criptografar, pressione ENCODE. Caso deseje descriptografar, pressione DECODE</p>
 <hr>
-<form>
-  <label for="message">Digite Sua Mensagem:</label><br>
-  <textarea name="message" id="message" cols="30" rows="10" style="width: 90%;"></textarea><br>
-  <label for="crptokey">Digite sua chave:</label><br>
-  <input type="number" min="0" max="9999" maxlength="4" step="1" id="crptokey" name="crptokey" ><br><br>
-  <input type="button" onclick="alert('Hello World!')" value="Encode Talker">
-  <input type="button" onclick="alert('Hello World!')" value="Decode Talker">
-  <input type="reset" value="Limpar">
 
-  
 
+<div class="center">
+
+<table>
+  <tr>
+    <td>
+      <form method="POST" action="./encode.php">
+          <input type="submit" value="Encode" id="encode" name="encode">
+      </form>
+
+</td>
+    <td>
+
+
+    <form method="POST" action="./decode.php">
+  <input type="submit" value="Decode" id="decode" name="decode">
 </form>
 
+    </td>
+  </tr>
+</table>
 
-  </form>
 </div>
 
-<div class="header">
-  
-  <?php
-
-  if (isset($_SESSION["message"])) {
-    echo $_SESSION["message"];
-  }
-
-
-
-
-?>
-  
-  
-  
-  </div>
   
 </div>
+
+
 
 <div class="footer">
   <?php 
 
-  require_once "./src/footer.php";
+  require_once "./assets/footer.php";
 
   echo $footer;
   
