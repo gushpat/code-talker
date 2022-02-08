@@ -325,7 +325,7 @@
 
       $messageArray = array(); //cria o array
       
-      $messageArray = explode("*", $message, -1); //transforma a mensagem em array
+      $messageArray = explode("*", $message, -1); //transforma a mensagem em array separando por *
   
 
       //print_r($messageArray);
@@ -334,24 +334,24 @@
 
       //determinante
 
-      $criptokeyArray = array(); //Cria o array multidimensional
-      $criptokeyArray = array_chunk(str_split($criptokey), 2);
+      $criptokeyArray = array(); //Cria o array 
+      $criptokeyArray = array_chunk(str_split($criptokey), 2); //transforma a chave em array bidimensional
 
-      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0];
+      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0]; //calcula o determinante
 
       //chave adjunta
 
-      $adjunta = array();
+      $adjunta = array(); //Cria o array 
 
-      $adjunta[0][0] = $criptokeyArray[1][1];
-      $adjunta[0][1] = $criptokeyArray[0][1] * -1;
-      $adjunta[1][0] = $criptokeyArray[1][0] * -1;
-      $adjunta[1][1] = $criptokeyArray[0][0];
+      $adjunta[0][0] = $criptokeyArray[1][1];  //Cria a matriz adjunta
+      $adjunta[0][1] = $criptokeyArray[0][1] * -1; //Cria a matriz adjunta
+      $adjunta[1][0] = $criptokeyArray[1][0] * -1; //Cria a matriz adjunta
+      $adjunta[1][1] = $criptokeyArray[0][0]; //Cria a matriz adjunta
 
 
       //matriz inversa
 
-      $inversa = array();
+      $inversa = array(); // Cria o array 
 
       for ($i = 0; $i < 2; $i++) {
         for ($j = 0; $j < 2; $j++) {
@@ -373,6 +373,8 @@
       $messageChunk = array(); //cria o array
       $messageChunk = array_chunk($messageArray, 5); //MUDAR O TAMANHO DEPOIS
 
+
+      // converte string para inteiro
 
       for ($k = 0; $k < 2; $k++)
         {
@@ -398,7 +400,7 @@
 
 
 
-
+      
       for ($k = 0; $k < 2; $k++)
         {
             for ($i = 0; $i < 5; $i++)
@@ -460,33 +462,66 @@
 
 
           return $resultado;
-
-
-
-
-
-
-
-      
+ 
     }
 
-
+    function clearsession()
+  {
+    session_unset();
+    session_destroy();
+  }
 
   }
 
 
-
-
-  $code = new code();
   
-  $mensagemcriptografada = $code->encodetalker($message, $criptokey);
 
-  echo $mensagemcriptografada;
+  
+  if (isset($_GET['action'])) //verifica se a variavel action foi setada
+  
+  {
+    $action = $_GET['action']; //armazena a get action na variavel action
 
-  $mensagemdescriptografada = $code->decodetalker($mensagemcriptografada, $criptokey);
+    $code = new code(); //cria um objeto da classe code
+  
+    if ($action == "encode") //verifica se a action é encode
+    
+    {
 
-  echo "<hr>";
-  echo $mensagemdescriptografada;
+      $code-> encodetalker($_POST['message'], $_POST['criptokey']); //chama a função encodetalker passando os parametros
+
+    }
+    else if ($action == "decode") //verifica se a action é decode
+    {
+      $code-> decodetalker($_POST['message'], $_POST['criptokey']); //chama a função decodetalker passando os parametros
+    }
+    else if ($action == "clearsession") //verifica se a action é clearsession
+    {
+      $code-> clearsession(); //chama a função clearsession
+    }
+    
+
+
+    
+
+
+  }
+
+  
+
+
+
+
+  
+  
+  //$mensagemcriptografada = $code->encodetalker($message, $criptokey);
+
+  //echo $mensagemcriptografada;
+
+  //$mensagemdescriptografada = $code->decodetalker($mensagemcriptografada, $criptokey);
+
+  //echo "<hr>";
+  //echo $mensagemdescriptografada;
 
 
 
