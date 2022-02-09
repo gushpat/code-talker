@@ -62,8 +62,11 @@ echo $header;
 
 require_once "./src/codetalker.php"; // Importa o arquivo de código
 
-if (isset($_POST["message"]) && isset($_POST["criptokey"])) { // Se o botão de Encode for clicado
-    $codetalker = new code(); // Instancia a classe Codetalker
+if (isset($_POST["message"]) && isset($_POST["criptokey"])) { 
+  
+  if ($_POST["message"] != null && $_POST["criptokey"] != null) { // Se o botão de Decode for clicado
+    // Se o botão de Encode for clicado
+  $codetalker = new code(); // Instancia a classe Codetalker
    echo 
  
    "
@@ -75,7 +78,29 @@ if (isset($_POST["message"]) && isset($_POST["criptokey"])) { // Se o botão de 
    
    
    "; // Chama o método encode
+  }
+  else
+  {
+
+    echo "
+
+  <div class='middle'>
+   <h2>ERRO:</h2>
+
+   <p>POR FAVOR PREENCHA TODOS OS CAMPOS!!!</p>
+   </div>
+
+   ";
+
+  }
+
 }
+
+
+   
+
+
+
 
 
 
