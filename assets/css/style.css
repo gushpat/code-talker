@@ -41,8 +41,29 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 10%;
+
   }
+
+  .middle {
+    
+    
+    background-color: #f1f1f1de;
+    padding: 30px;
+    text-align: center;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    
+    width: 98%;
+    height:fit-content;
+    overflow: hidden;
+    word-wrap: break-word;
+  
+    }
+  
 
   .imagect{
     width: 90%;
@@ -99,26 +120,15 @@
   
    
   .footer {
-    background-color: #f1f1f1a9;
-    padding: 10px;
+    background-color: #f1f1f1de;
+    padding: 30px;
     text-align: center;
     border-radius: 20px;
-    
-
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    
-
-   
-  
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
-
-  
+    
   }
 
   
@@ -193,5 +203,40 @@
       text-align: left;
     }
   }
+
+  /* INPUT */ 
+
+  input[type=text] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+  }
+
+  input[type=button], input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Tip: use width: 100% for full-width buttons */
+
 
   
