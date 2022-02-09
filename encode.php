@@ -10,12 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<?php 
 
-$_SESSION["message"] = null; // Inicializa a variável de sessão
-$_SESSION["key"] = null; // Inicializa a variável de sessão
-
-?>
 
 
 
@@ -41,13 +36,13 @@ echo $header;
 
 <p>Digite a mensagem e a chave nos campos abaixo. Caso deseje criptografar, pressione ENCODE. Caso deseje descriptografar, pressione DECODE</p>
 <hr>
-<form method="POST" action="/action_page.php">
+<form method="POST" action="/encode.php">
   <label for="message">Digite Sua Mensagem:</label><br>
   <textarea name="message" id="message" cols="30" rows="10" style="width: 90%;"></textarea><br>
-  <label for="crptokey">Digite sua chave:</label><br>
-  <input type="number" min="0" max="9999" maxlength="4" step="1" id="crptokey" name="crptokey" ><br><br>
+  <label for="criptokey">Digite sua chave:</label><br>
+  <input type="text" maxlength="4" step="1" id="criptokey" name="criptokey" ><br><br>
   <input type="submit" value="Encode" id="encode" name="encode">
-  <input type="reset" value="Limpar">
+
 
   
 
@@ -59,26 +54,41 @@ echo $header;
   </form>
 </div>
 
-<div class="header">
-  
-  <?php
 
-  if (isset($_SESSION["message"])) {
-    echo $_SESSION["message"];
-  }
+  
+  
+
+<?php 
+
+require_once "./src/codetalker.php"; // Importa o arquivo de código
+
+if (isset($_POST["message"]) && isset($_POST["criptokey"])) { // Se o botão de Encode for clicado
+    $codetalker = new code(); // Instancia a classe Codetalker
+   echo 
+ 
+   "
+   <div class='middle'>
+   <h2>Mensagem Criptografada:</h2>
+
+   <p>".$codetalker->encodetalker($_POST["message"], $_POST["criptokey"])."</p>
+   </div>
+   
+   
+   "; // Chama o método encode
+}
+
 
 
 
 
 ?>
+
   
   
-  
-  </div>
   
 </div>
 
-<div class="footer">
+<div>
   <?php 
 
   require_once "./assets/footer.php";
