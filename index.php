@@ -10,12 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<?php 
 
-$_SESSION["message"] = null; // Inicializa a variável de sessão
-$_SESSION["key"] = null; // Inicializa a variável de sessão
-
-?>
 
 
 
@@ -41,11 +36,12 @@ echo $header;
 
 
 
-<p>Digite a mensagem e a chave nos campos abaixo. Caso deseje criptografar, pressione ENCODE. Caso deseje descriptografar, pressione DECODE</p>
+<p>Selecione a opção abaixo:</p>
 <hr>
 
 
-<div class="center">
+<div>
+  <center>
 
 <table>
   <tr>
@@ -67,13 +63,14 @@ echo $header;
 </table>
 
 </div>
+</center>
 
   
 </div>
 
 
 
-<div class="header">
+<div>
   <?php 
 
   require_once "./assets/footer.php";
