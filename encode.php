@@ -4,14 +4,22 @@
 <title>Code Talker</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Code Talker">
+<meta name="keywords" content="Code Talker">
+<meta name="author" content="Gustavo Patricio">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="google" content="index, follow">
+<meta name="rating" content="general">
+<meta name="distribution" content="global">
+<meta name="revisit-after" content="1 days">
+<meta name="language" content="pt-br">
+<meta name="copyright" content="Code Talker">
+<meta name="expires" content="never">
 
 <link rel="stylesheet" type="text/css" href="./assets/css/style.css" media="screen" />
 <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-
-
 
 
 </head>
