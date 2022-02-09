@@ -41,8 +41,8 @@ echo $header;
 
 
 <div class="header">
-
-<p>Digite a mensagem e a chave nos campos abaixo. Caso deseje criptografar, pressione ENCODE. Caso deseje descriptografar, pressione DECODE</p>
+<h2>ENCODE TALKER</h2>
+<p>Digite a mensagem e a chave nos campos abaixo e pressione ENCODE</p>
 <hr>
 <form method="POST" action="/encode.php">
   <label for="message">Digite Sua Mensagem:</label><br>
@@ -78,7 +78,7 @@ if (isset($_POST["message"]) && isset($_POST["criptokey"])) {
    echo 
  
    "
-   <div class='middle'>
+   <div class='middle' id='result'>
    <h2>Mensagem Criptografada:</h2>
 
    <p>".$codetalker->encodetalker($_POST["message"], $_POST["criptokey"])."</p>
