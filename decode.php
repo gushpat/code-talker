@@ -41,15 +41,15 @@ echo $header;
 
 
 <div class="header">
-<h2>DECODE TALKER:</h2>
-<p>Digite a mensagem e a chave nos campos abaixo. Caso deseje criptografar, pressione ENCODE. Caso deseje descriptografar, pressione DECODE</p>
+<h2>DECODE TALKER</h2>
+<p>Digite a mensagem e a chave nos campos abaixo e pressione DECODE</p>
 <hr>
 <form method="POST" action="/decode.php">
   <label for="message">Digite Sua Mensagem:</label><br>
   <textarea name="message" id="message" cols="30" rows="10" style="width: 90%;"></textarea><br>
   <label for="criptokey">Digite sua chave:</label><br>
   <input type="text" maxlength="4" step="1" id="criptokey" name="criptokey" ><br><br>
-  <input type="submit" value="Encode" id="encode" name="encode">
+  <input type="submit" value="Decode" id="decode" name="decode">
 
 
   
