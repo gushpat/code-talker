@@ -28,6 +28,18 @@
 
   class code{
 
+    public function calcdet($criptokey){
+
+      $criptokeyArray = array(); //Cria o array multidimensional
+      $criptokeyArray = array_chunk(str_split($criptokey), 2); //Preenche o array com os caracteres da chave
+
+      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0]; 
+
+      return $det;
+
+
+    }
+
 
     public function encodetalker($message, $criptokey){
 
@@ -147,7 +159,7 @@
         {
             for ($i = 0; $i < $len_i; $i++) //for > numero de colunas
             {
-              $resultadofinal .= $n[$k][$i] . "%0%"; //Adiciona o caractere de separacao
+              $resultadofinal .= $n[$k][$i] . "%#%"; //Adiciona o caractere de separacao
                 
 
 
@@ -325,9 +337,10 @@
 
       $messageArray = array(); //cria o array
       
-      $messageArray = explode("%0%", $message, -1); //transforma a mensagem em array separando por *
+      $messageArray = explode("%#%", $message, -1); //transforma a mensagem em array separando por *
   
 
+      $messagelen = count($messageArray);;
       //print_r($messageArray);
       
 
@@ -369,16 +382,17 @@
 
       $c = $inversa; // matriz c = chave inversa
 
+      
 
       $messageChunk = array(); //cria o array
-      $messageChunk = array_chunk($messageArray, 5); //MUDAR O TAMANHO DEPOIS
+      $messageChunk = array_chunk($messageArray, ($messagelen/2)); //MUDAR O TAMANHO DEPOIS
 
 
       // converte string para inteiro
 
       for ($k = 0; $k < 2; $k++)
         {
-            for ($i = 0; $i < 5; $i++) //MUDAR O TAMANHO DEPOIS
+            for ($i = 0; $i < ($messagelen/2); $i++) //MUDAR O TAMANHO DEPOIS
             {
                 $m[$k][$i] = intval($messageChunk[$k][$i]);
 
@@ -403,7 +417,7 @@
       
       for ($k = 0; $k < 2; $k++)
         {
-            for ($i = 0; $i < 5; $i++)
+            for ($i = 0; $i < ($messagelen/2); $i++)
             {
                 //algoritmo para criptografia
                 //super simples XD
@@ -426,7 +440,7 @@
 
         for ($k = 0; $k < 2; $k++)
         {
-            for ($i = 0; $i < 5; $i++) //MUDAR O TAMANHO DEPOIS
+            for ($i = 0; $i < ($messagelen/2); $i++) 
             {
                 //algoritmo para criptografia
                 //super simples XD
@@ -448,7 +462,7 @@
 
       for ($k = 0; $k < 2; $k++)
         {
-            for ($i = 0; $i < 5; $i++) //MUDAR O TAMANHO DEPOIS
+            for ($i = 0; $i < ($messagelen/2); $i++) 
             {
                 //algoritmo para criptografia
                 //super simples XD
