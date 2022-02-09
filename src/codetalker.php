@@ -147,7 +147,7 @@
         {
             for ($i = 0; $i < $len_i; $i++) //for > numero de colunas
             {
-              $resultadofinal .= $n[$k][$i] . "*"; //Adiciona o caractere de separacao
+              $resultadofinal .= $n[$k][$i] . "%0%"; //Adiciona o caractere de separacao
                 
 
 
@@ -325,7 +325,7 @@
 
       $messageArray = array(); //cria o array
       
-      $messageArray = explode("*", $message, -1); //transforma a mensagem em array separando por *
+      $messageArray = explode("%0%", $message, -1); //transforma a mensagem em array separando por *
   
 
       //print_r($messageArray);
@@ -465,55 +465,10 @@
  
     }
 
-    function clearsession()
-  {
-    session_unset();
-    session_destroy();
-  }
-
+   
   }
 
 
-  
-
-  
-  if (isset($_GET['action'])) //verifica se a variavel action foi setada
-  
-  {
-    $action = $_GET['action']; //armazena a get action na variavel action
-
-    $code = new code(); //cria um objeto da classe code
-  
-    if ($action == "encode") //verifica se a action é encode
-    
-    {
-
-      $code-> encodetalker($_POST['message'], $_POST['criptokey']); //chama a função encodetalker passando os parametros
-
-    }
-    else if ($action == "decode") //verifica se a action é decode
-    {
-      $code-> decodetalker($_POST['message'], $_POST['criptokey']); //chama a função decodetalker passando os parametros
-    }
-    else if ($action == "clearsession") //verifica se a action é clearsession
-    {
-      $code-> clearsession(); //chama a função clearsession
-    }
-    
-
-
-    
-
-
-  }
-
-  
-
-
-
-
-  
-  
   //$mensagemcriptografada = $code->encodetalker($message, $criptokey);
 
   //echo $mensagemcriptografada;
