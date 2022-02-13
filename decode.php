@@ -50,7 +50,8 @@ echo $header;
   <label for="criptokey">Digite sua chave:</label><br>
   <input type="text" maxlength="4" step="1" id="criptokey" name="criptokey" ><br><br>
   <input type="submit" value="Decode" id="decode" name="decode">
-
+  <input type="button" value="Voltar" class="homebutton" id="btnHome" 
+onClick="document.location.href='index.php'" />
 
   
 
@@ -93,7 +94,7 @@ if (isset($_POST["message"]) && isset($_POST["criptokey"])) {
     echo "
 
   <div class='middle'>
-   <h2>ERRO:</h2>
+   <h2>ERRO!</h2>
 
    <p>POR FAVOR PREENCHA TODOS OS CAMPOS!!!</p>
    </div>

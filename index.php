@@ -34,6 +34,9 @@ echo $header;
 
 <div class="header">
 
+<p>Você pode criptografar e descriptografar mensagens utilizando as opções abaixo.</p>
+<p>A chave deve ter apenas 4 caracteres numéricos.</p>
+
 
 
 <p>Selecione a opção abaixo:</p>
@@ -56,6 +59,8 @@ echo $header;
 
     <form method="POST" action="./decode.php">
   <input type="submit" value="Decode" id="decode" name="decode">
+
+  
 </form>
 
     </td>
