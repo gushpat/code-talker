@@ -1,5 +1,5 @@
 <h3 align="center">
- <p>Welcome to the next level!</p>
+
 <img src="https://codetalker.herokuapp.com/assets/images/logo.png" alt="code-talker" width="400" />
 </h3>
 
