@@ -3,19 +3,6 @@
 
   class code{
 
-    public function calcdet($criptokey){
-
-      $criptokeyArray = array(); //Cria o array multidimensional
-      $criptokeyArray = array_chunk(str_split($criptokey), 2); //Preenche o array com os caracteres da chave
-
-      $det = $criptokeyArray[0][0] * $criptokeyArray[1][1] - $criptokeyArray[0][1] * $criptokeyArray[1][0]; 
-
-      return $det;
-
-
-    }
-
-
     public function encodetalker($message, $criptokey){
 
       $extrachar = " "; //Caracter que será usado para ajustar o tamanho da mensagem
@@ -70,6 +57,18 @@
       $criptokeyArray = array(); //Cria o array multidimensional
       $criptokeyArray = array_chunk(str_split($criptokey), 2); //Preenche o array com os caracteres da chave
 
+
+      //reescrever esta parte do código caso a chave seja composta de mais caracteres
+      if($criptokeyArray[0][0] == null || $criptokeyArray[0][1] == null || $criptokeyArray[1][0] == null || $criptokeyArray[1][1] == null){ //Se algum dos valores da chave for nulo, não é possível fazer a operação
+        
+        $error = "<h2>ERRO!</h2>
+  
+        <p>CHAVE INVÁLIDA: POR FAVOR INSIRA 4 CARACTERES NUMÉRICOS NO CAMPO ACIMA.</p>";
+
+        return $error; //Retorna o erro
+        
+      }
+
       //echo "<hr>";
       //print_r($criptokeyArray); //Mostra o array multidimensional (DEBUG ONLY)
 
@@ -85,12 +84,10 @@
         
         //echo "DET = 0, a mensagem não pode ser criptografada, a chave deve ser alterada";
 
-        //atribui esses valores temporariamente para não dar erro
-        //utilizar uma outra função para obter numeros aleatorios
-        $criptokeyArray[0][0] = 1;
-        $criptokeyArray[0][1] = 2;
-        $criptokeyArray[1][0] = 3;
-        $criptokeyArray[1][1] = 4;
+        $error = "<h2>ERRO!</h2> 
+        <p>CHAVE INVÁLIDA! DETERMINANTE NÃO PODE SER IGUAL A ZERO.</p>";
+
+        return $error; //Retorna o erro
 
       }
 
