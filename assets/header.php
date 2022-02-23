@@ -14,6 +14,9 @@ $header =
   </a>
 </div>
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9250561871244265"
+     crossorigin="anonymous"></script>
+
 
 
 ';
