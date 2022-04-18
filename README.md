@@ -3,7 +3,7 @@
 <img src="https://codetalker.herokuapp.com/assets/images/logo.png" alt="code-talker" width="400" />
 </h3>
 
- # Code Talker
+ # Code Talker - Versão 1.0.2
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/gushpat/code-talker?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/gushpat/code-talker?style=for-the-badge)
