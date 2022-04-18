@@ -35,6 +35,6 @@ Quer fazer parte desse projeto? Clique [AQUI](https://github.com/gushpat/) e vej
 
 ## 📝 Licença
 
-Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
+Esse projeto está disponível sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
 
 [⬆ Voltar ao topo](code-talker)<br>
