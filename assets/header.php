@@ -1,7 +1,10 @@
 <?php
 
+$header = "";
 
-$header = 
+
+//antigo código de header
+$Oldheader = 
 '
 
 
